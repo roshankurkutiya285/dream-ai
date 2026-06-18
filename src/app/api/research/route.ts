@@ -9,7 +9,7 @@ export async function POST(request: NextRequest) {
   try {
     if (!isGeminiConfigured()) {
       return NextResponse.json(
-        { error: "Gemini API key is not configured. Add GEMINI_API_KEY to .env.local" },
+        { error: "Groq API key is not configured. Add GROQ_API_KEY to .env.local — get a free key at https://console.groq.com" },
         { status: 503 }
       );
     }
@@ -30,7 +30,7 @@ export async function POST(request: NextRequest) {
 
     const trimmedQuery = query.trim();
 
-    // Generate structured report via Gemini + Google Search
+    // Generate structured report via Groq AI
     const report = await generateResearchReport(trimmedQuery, queryType);
 
     // Persist to Supabase if configured, otherwise return without saving
